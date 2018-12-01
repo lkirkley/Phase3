@@ -1,1 +1,26 @@
+<?php
+//Figure 1 Login Screen
+error_reporting(E_ALL); ini_set("display_errors", "1");
+$username= $_POST['username'];
+$password = $_POST['password'];
+//the query
+$query = "insert into  user values ('$username', '$password')";
+$result = mysqli_query($link, $query);
+mysqli_select_db($link, ‘Login') or ($link, ‘Register’);
+if (!$result) {die('SQL error: ' . mysqli_error($link));}
+mysqli_close($link);
+print "<html><body><center>";
 
+mysqli_select_db($link, ‘Create') or die ('Could not select database');
+
+//Figure 2 New user information
+$username= $_POST['username'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$confirmpass = $_POST['confirmpass'];
+$managerpass = $_POST['managerpass'];
+$query = "insert into  user values ('$username', '$email', ‘$password’, ‘$confirmpass’, ‘$managerpass’)";
+$result = mysqli_query($link, $query);
+if (!$result) {die('SQL error: ' . mysqli_error($link));}
+mysqli_close($link);
+print "<html><body><center>";
