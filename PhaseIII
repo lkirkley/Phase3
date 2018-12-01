@@ -3,7 +3,6 @@
 error_reporting(E_ALL); ini_set("display_errors", "1");
 $username= $_POST['username'];
 $password = $_POST['password'];
-//the query
 $query = "insert into  user values ('$username', '$password')";
 $result = mysqli_query($link, $query);
 mysqli_select_db($link, ‘Login') or ($link, ‘Register’);
