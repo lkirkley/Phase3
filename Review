@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>	
+<h1>
+		Review<br>
+	</h1>
+		<h2>
+		<?php echo $title;?>
+		</h2>
+
+	
+		<a href = “givereview.html”> Give Review</a> <br></br>
+<form action= “givereview.php” method = “post”>
+
+<table border = “1” cellspacing = “2” cellpadding = “2”>
+<tr>
+<td><?php echo $title;?></td>
+<td><?php echo $rating;?></td>
+<td><?php echo $comment;?></td>
+</tr>
+</table>
+<a href = “overview.html”> Back </a> <br></br>
+
+
+</html>
+
+<?php
+
+
+		if($title == ‘All’){
+			$query = “Select title, rating, comment From review Where title = $title;
+			}
+
+$running = mysql_query ($sql_query) or die(mysql_error()); 
+$num = mysql_numrows($result);  
+mysql_close ();
+
+?>
