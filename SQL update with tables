@@ -1,0 +1,277 @@
+
+CREATE TABLE PlaysAt(playing varchar(20), title varchar(20), TheaterID int Not null);
+
+CREATE TABLE Prefers(theaterID int not null, username varchar(10), Primary Key(TheaterID));
+
+CREATE TABLE SystemInfo(Cancellationfee int not null, managerpassword varchar(10), childDiscount int not null, seniordiscount int not null);
+
+CREATE TABLE customer (email varchar(20) NOT NULL, username varchar(10) NOT NULL, password varchar(10) NOT NULL, PRIMARY KEY(email, username), FOREIGN KEY(email) REFERENCES User(email), FOREIGN KEY(username) REFERENCES User(username));
+
+CREATE TABLE manager (email varchar(20) NOT NULL, username varchar(10) NOT NULL, password varchar(10) NOT NULL, PRIMARY KEY(email, username), FOREIGN KEY(email) REFERENCES User(email), FOREIGN KEY(username) REFERENCES User(username));
+
+CREATE TABLE movie (title varchar(20) NOT NULL, rating varchar(6), genre varchar(15), length int, synopsis varchar(1000), cast varchar(100), releasedate DATE, PRIMARY KEY(title));
+
+CREATE TABLE orderinfo(orderId int NOT NULL, username varchar(10), date Date, time TIME, senior int, childTickets int, adultTickets int, totalTickets int, status char, TheaterID int, cardnumber int, title varchar(20),PRIMARY KEY(orderId),FOREIGN KEY(username) REFERENCES Customer(username),FOREIGN KEY(cardnumber) REFERENCES PaymentInfo(cardnumber));
+
+CREATE TABLE paymentinfo(cardNo int NOT NULL, cvv int Not Null, Nameoncard varchar(20), expirationdate date, saved varchar(10), username varchar(10), PRIMARY KEY(CardNo), FOREIGN KEY(username) REFERENCES User(username));
+
+CREATE TABLE review (ReviewID int NOT NULL, rating varchar(6), title varchar(20), comment varchar(100), username varchar(10), PRIMARY KEY(ReviewID), FOREIGN KEY(title) REFERENCES Movie(title), FOREIGN KEY(username) REFERENCES User(username));
+
+CREATE TABLE showings (time TIME, title varchar(20) NOT NULL, TheaterID int NOT NULL, PRIMARY KEY(title, TheaterID), FOREIGN KEY(title) REFERENCES Movie(title), FOREIGN KEY(TheaterID) REFERENCES Theater(ID));
+
+CREATE TABLE theater (ID int NOT NULL, name varchar(15), zip int, streetname varchar(15), city varchar(50), state varchar(2), PRIMARY KEY(ID));
+
+CREATE TABLE tickets(orderId int NOT NULL, username varchar(10), email varchar(20), date Date, time TIME, senior int, childTickets int, adultTickets int, totalTickets int, status char, TheaterID int, cardnumber int, title varchar(20), PRIMARY KEY(orderId), FOREIGN KEY(email) REFERENCES Customer(email), FOREIGN KEY(cardnumber) REFERENCES PaymentInfo(cardnumber));
+
+CREATE TABLE user (email varchar(20) NOT NULL, username varchar(10) NOT NULL, password varchar(10), PRIMARY KEY (email, username));
+
+
+//Theaters
+//1
+Insert into theater (ID, name, zip, streetname, city, state) Values(333, "Phoenix Theatres The Edge 12", 35210, "7001 Crestwood Blvd 1100", "Birmingham",	"AL");
+//2
+Insert into theater (ID, name, zip, streetname, city, state) Values(444, "Regal Riviera Stadium 8", 37902, "510 S Gay St", "Knoxville", "TN");
+//3
+Insert into theater (ID, name, zip, streetname, city, state) Values(543, "Regal Atlantic Station Stadium 16 IMAX, RPX & VIP", 30363, "261 19th St NW #1250",	"Atlanta", "GA");
+//4
+Insert INTO theater(ID, name, zip, streetname, city, state) values (619, "Cobb Theatres - Pinnacle 14", 36542, "Gulf Shores Pkwy",	"Gulf Shores", "AL");
+//5
+Insert INTO theater (ID, name, zip, streetname, city, state) values (123, "AMC Summit 16", 35243, "321 Summit Blvd",	"Birmingham", "AL");
+//6
+Insert INTO theater (ID, name, zip, streetname, city, state) values (456, "Cobb Theatres – Hollywood 16 & IMAX", 35405, "4250 Old Greensboro Rd",	"Tuscaloosa", "AL");
+
+
+
+//Movies
+//1
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("The House With Clocks in its Walls", "PG", "Mystery", 105, "Ten year old Lewis goes to live with his oddball uncle in a creaky old house that contains a mysterious tick tock noise. He soon learns that Uncle Jonathan and his feisty neighbour Mrs Zimmerman are powerful practitioners of the magic arts. When Lewis accidentally awakens the dead the towns sleepy facade suddenly springs to life revealing a secret and dangerous world of witches warlocks and deadly curses.",
+"Madison Iseman 
+Jack Black
+Jeremy Ray Taylor
+Wendi McLendon
+Ken Jeong
+Caleel Harris
+Chris Parnell
+Shari Headley 
+Mick Wingert", "9/12/18");
+//2
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("Goosebumps two Haunted Halloween", "PG", "Horror",	200, "While collecting junk one day best friends Sonny and Sam meet Slappy a mischievous talking dummy from an unpublished Goosebumps book by R.L. Stine. Hoping to start his own family Slappy kidnaps Sonnys mother and brings all of his ghoulish friends back to life  just in time for Halloween. As the sleepy town becomes overrun with monsters witches and other mysterious creatures Sonny joins forces with his sister Sam and a kindly neighbor to save Sonnys mom and foil Slappys plan.",	"Madison Iseman 
+Jack Black
+Jeremy Ray Taylor
+Wendi McLendon
+Ken Jeong
+Caleel Harris
+Chris Parnell
+Shari Headley 
+Mick Wingert",  "9/12/18");
+//3
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("The Guilty",	"R",	"Crime Film",	85,	"Alarm dispatcher and former police officer Asger Holm answers an emergency call from a kidnapped woman. When the call is suddenly disconnected the search for the woman and her kidnapper begins.",	
+"Katherine Kelly
+Tamsin Greig
+Nicola Thorp
+Pooky Quesnel 
+Ruta Gedmintas
+Darren Boyd
+Arsher Ali
+Linda Marlowe",	"10/19/18"
+);
+//4
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("Boy Erased", "R",	"Drama", 115,	"Jared Eamons the son of a small town Baptist pastor must overcome the fallout after being outed as gay to his parents. His father and mother struggle to reconcile their love for their son with their beliefs. Fearing a loss of family friends and community Jared is pressured into attending a conversion therapy program. While there Jared comes into conflict with its leader and begins his journey to finding his own voice and accepting his true self.",	
+"Joel Edgerton
+Troye Sivan
+Lucas Hedges
+Joe Alwyn
+Nicole Kidman
+Russell Crowe
+Xavier Dolan
+Flea",	"11/2/18");
+//5
+
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("Bohemian Rhapsody", "PG13",	"Drama", 	133,	"Bohemian Rhapsody is a foot stomping celebration of Queen their music and their extraordinary lead singer Freddie Mercury. Freddie defied stereotypes and shattered convention to become one of the most beloved entertainers on the planet. The film traces the meteoric rise of the band through their iconic songs and revolutionary sound. They reach unparalleled success, but in an unexpected turn Freddie surrounded by darker influences shuns Queen in pursuit of his solo career. Having suffered greatly without the collaboration of Queen Freddie manages to reunite with his bandmates just in time for Live Aid. While bravely facing a recent AIDS diagnosis Freddie leads the band in one of the greatest performances in the history of rock music. Queen cements a legacy that continues to inspire outsiders dreamers and music lovers to this day.", 
+"Rami Malek Ben Hardy Mike Myers Joseph Mazzello Gwilym Lee Lucy Boynton Aidan Gillen", "11/2/18");
+//6
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("The Front Runner",	"R",	"Drama", 113, 	"Gary Hart former senator of Colorado becomes the front runner for the Democratic presidential nomination in 1987. Harts intelligence charisma and idealism makes him popular with young voters leaving him with a seemingly clear path to the White House. All that comes crashing down when allegations of an extramarital affair surface in the media forcing the candidate to address a scandal that threatens to derail his campaign and personal life",	
+"Hugh Jackman
+Molly Ephraim
+Bill Burr
+Kaitlyn Denver 
+Sara Paxton 
+Vera Farmiga
+Jennifer Landon
+Mamoudou Athie",	"11/6/18"
+);
+//7
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("Halloween",	"R",	"Thriller",	104,	"On a cold Halloween night in 1963 six year old Michael Myers brutally murdered his 17 year old sister Judith. He was sentenced and locked away for 15 years. But on October 30 1978 while being transferred for a court date a 21 year old Michael Myers steals a car and escapes Smiths Grove. He returns to his quiet hometown of Haddonfield Illinois where he looks for his next victims.",	
+"Jamie Lee Curtis
+Donald Pleasence
+Nick Castle
+Tony Moran
+Charles Cyphers
+Kyle Richards
+Nancy Kyes
+Brian Andrews
+Nancy Stephens",	"10/19/18"
+);
+//8
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("A Simple Favor",	"R",	"Drama",	119,	"A SIMPLE FAVOR directed by Paul Feig centers around Stephanie Anna Kendrick a mommy vlogger who seeks to uncover the truth behind her best friend Emilys Blake Lively sudden disappearance from their small town.", "Blake Lively
+Henry Golding
+Anna Kendrick
+Linda Cardellini
+Rupert Friend
+Andrew Rannells
+Gia Sandhu
+Ian Ho",	"11/14/18"
+);
+//9
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("A Star is Born",	"R",	"Film adaptation",	134,	"Seasoned musician Jackson Maine discovers and falls in love with struggling artist Ally. She has just about given up on her dream to make it big as a singer until Jackson coaxes her into the spotlight. But even as Allys career takes off the personal side of their relationship is breaking down as Jackson fights an ongoing battle with his own internal demons.",	
+"Bradley Cooper
+Lady Gaga
+Sam Elliot
+Dave Chappelle
+Andrew Dice Clay
+Anthony Ramos",	"10/5/18");
+//10
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) Values ("Venom",	"PG13",	"Thriller",	140,	"Journalist Eddie Brock is trying to take down Carlton Drake the notorious and brilliant founder of the Life Foundation. While investigating one of Drakes experiments Eddies body merges with the alien Venom leaving him with superhuman strength and power. Twisted dark and fueled by rage Venom tries to control the new and dangerous abilities that Eddie finds so intoxicating.",	
+"Tom Hardy
+Michelle Williams
+Riz Ahmed
+Woody Harrelson
+Jenny Slate
+Scott Haze
+Reid Scott
+Michelle Lee",	"10/5/18");
+
+
+//11
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("The Hate U Give",	"PG13",	"Drama",	133,	"Starr Carter is constantly switching between two worlds  the poor mostly black neighborhood where she lives and the wealthy mostly white prep school that she attends. The uneasy balance between these worlds is soon shattered when she witnesses the fatal shooting of her childhood best friend at the hands of a police officer. Facing pressure from all sides of the community Starr must find her voice and decide to stand up for whats right.",	
+"Amandla Stenberg
+KJ Apa
+Sabrina Carpenter
+Algee Smit
+Issa Rae
+Regina Hall
+Dominique Fishback
+Lamar Johnson",	"10/5/18");
+//12
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Stellas Last Weekend",	"NR",	"Comedy",	102,	"The bond between two brothers is challenged when they find they are in love with the same girl.",	
+"Alex Wolff
+Nat Wolff
+Nich Sandow
+Polly Draper
+Julia Macchio
+Paulina Singer
+Patricia Squire 
+Joshua Satine", "10/12/18");
+//13
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Infinite Football",	"NR",	"Documentary",	70,	"Obsessed with an injury that occurred in his youth, a man works tirelessly to radically revise the rules of football.", "Corneliu Porumboiu	
+Laurentiu Ginghina",	"11/2/18");
+//14
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Creed II",	"PG13",	"Drama",	130,	"In 1985 Russian boxer Ivan Drago killed former U.S. champion Apollo Creed in a tragic match that stunned the world. Against the wishes of trainer Rocky Balboa Apollos son Adonis Johnson accepts a challenge from Dragos son another dangerous fighter. Under guidance from Rocky Adonis trains for the showdown of his life  a date with destiny that soon becomes his obsession. Now Johnson and Balboa must confront their shared legacy as the past comes back to haunt each man.",	
+"Sylvester Stallone
+Michael B. Jordan
+Dolph Lundgren
+Tessa Thompson
+Florian Munteanu
+Phylicia Rashad
+Andre Ward
+Wood Harris",	"11/21/18");
+//15
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Robin Hood",	"PG13",	"Thriller",	116,	"After the death of Richard the Lion Hearted a skilled archer named Robin Longstride Russell Crowe travels to Nottingham where villagers suffer under a despotic sheriff and crippling taxation. He meets and falls in love with a spirited widow Marion Cate Blanchett although she is skeptical of his motives. Hoping to win her heart and save the village Robin gathers a band of warriors to fight corruption in Nottingham little knowing they will soon be fighting to save England itself.",	
+"Taron Egerton
+Jamie Dornan
+Jamie Foxx
+Eve Hewson
+Ben Mendelsohn
+Tim Minchin
+Paul Anderson",	"11/21/18");
+//16
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Green Book",	"PG13", 	"Drama", 130,	"Dr. Don Shirley is a world class African American pianist whos about to embark on a concert tour in the Deep South in 1962. In need of a driver and protection Shirley recruits Tony Lip a tough talking bouncer from an Italian American neighborhood in the Bronx. Despite their differences the two men soon develop an unexpected bond while confronting racism and danger in an era of segregation.",
+"Viggo Mortensen
+Mahershala Ali
+Linda Cardellini
+Sebastian Maniscalco
+Iqbal Theba
+Don Stark
+P.J. Byrne
+Joseph Cortese",	"11/16/18");
+//17
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Dr. Seuss  The Grinch",	"PG",	"Fantasy",	105,	"The Grinch and his loyal dog Max live a solitary existence inside a cave on Mount Crumpet. His main source of aggravation comes during Christmastime when his neighbors in Whoville celebrate the holidays with a bang. When the Whos decide to make Christmas bigger and brighter the disgruntled Grinch realizes there is one way to gain peace and quiet. With help from Max the green grump hatches a scheme to pose as Santa Claus steal Christmas and silence the Whos holiday cheer once and for all.",	
+"Benedict Cumberbatch
+Rashida Jones
+Pharrell Williams
+Angela Lansbury
+Kenan Thompson
+Frank Welker
+Sam Lavagnino
+Scarlett Estevez",	"11/9/18");
+//18
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Nobodys Fool",	"R",	"Drama",	110,	"Donald Sully Sullivan Paul Newman is an expert at avoiding adult responsibilities. At 60 he divides all his time between a local bar and the occasional construction job. When his estranged son Peter arrives in town bringing with him a son of his own and a sob story about his failed marriage Sully finds himself assuming the roles of both father and grandfather. After a life of unchecked self indulgence he wonders if he is up to the task.",	
+"Tiffany Haddish
+Amber Riley
+Tika Sumpter
+Whoopi Goldberg
+Omari Hardwick Jon Rudnitsky
+Mehcad Brooks
+Courtney Henggeler",	"12/14/18");
+//19
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Instant Family",	"PG13",	"Drama",	120,	"When Pete and Ellie decide to start a family they stumble into the world of foster care adoption. They hope to take in one small child but when they meet three siblings including a rebellious 15 year old girl they find themselves speeding from zero to three kids overnight. Now Pete and Ellie must try to learn the ropes of instant parenthood in the hope of becoming a family.",	
+"Mark Wahlberg
+Isabela Moner
+Rose Byrne
+Tom Segura
+Iliza Shlesinger
+Tig Notaro
+Octavia Spencer
+Eve Harlow",	"12/19/18");
+//20
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Spider Man Into the Spider-Verse",	"PG",	"Fantasy",	120,	"Bitten by a radioactive spider teenager Miles Morales suddenly develops mysterious powers that transform him into Spider Man. He must now use his newfound skills to battle the Kingpin a hulking madman who can open portals to other dimensions.",	
+"Shameik Moore
+Jake Johnson
+Hailee Steinfeld
+Liev Schreiber
+Mahershala Ali
+Brian Tyree Henry
+Nicolas Cage
+Lily Tomlin",	"12/14/18");
+//21
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Mary Poppins Returns",	"PG",	"Fantasy",	131,	"The mysterious Mary Poppins returns to Depression era London to visit Jane and her brother Michael now a father of three and helps them rediscover the joy they knew as children.",	
+"Emily Blunt
+Dick Van Dyke
+Meryle Streep 
+ngela Lansbury
+Lin-Manuel Miranda
+Julie Walters
+Colin Firth",	"12/19/18");
+//22
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Vice",	"R",	"Drama",	132,	"Julian Michaels has created Vice the ultimate resort. His clients pay great sums of money to indulge in uninhibited hedonism and their most violent fantasies. The victims however are androids that are barely distinguishable from humans. When one of the androids becomes self aware she breaks out from the resort and makes her escape. She finds herself caught in the crosshairs of Michaels mercenaries and is helped by Roy a cop who is determined to take down Vice once and for all.",	
+"Amy Adams
+Christian Bale
+Steve Carell
+Sam Rockwell
+Tyler Perry
+Bill Pullman
+Cailee Spaeny
+Aliscon Pill",	"12/25/18");
+//23
+Insert into movie (title, rating, genre, length, synopsis, cast, releasedate) 
+Values ("Life Itself",	"R",	"Comedy",	118,	"College sweethearts Will and Abby fall in love get married and prepare to bring their first child into the world. As their story unfolds in New York fate links them to a group of people in Seville Spain including a troubled young woman a man and his granddaughter a wealthy landowner and a plantation manager.",	
+"Oscar Isaac 
+Olivia Cooke
+Olivia Wilde
+Laia Costa 
+Antonio Banderas
+Mandt Patinkin
+Annette Bening
+Samuel L. Jackson",	"9/21/18");
