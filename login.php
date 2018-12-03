@@ -28,25 +28,29 @@ LOGIN REQUIREMENTS:
 
     function is_user($username, $password){
         $query = "select username, password from user where username = $username AND password = $password";
-        if(query->rows == 0){
-            return;
-        }
-        else{
+        // if(query->rows == 0){
+        //     return false;
+        // }
+        // else{
             $_SESSION['username'] = $username; 
             header("nowplaying.html");
-        }
+        //}
     }
 
     function is_manager($username, $password){
         $query = "select username, password from manager where username = $username and password = $password;"
         if(query->rows == 0){
-            return;
+            return false;
         }
         else{
             $_SESSION['username'] = $username; 
             header("choosefunctionality.html");
         }
-    
+    }
+
+    if(!is_manager($username, $password) && !is_user($username, $password)){
+        echo "Error, incorrect login information."
+        header("login.html");
     }
 
 

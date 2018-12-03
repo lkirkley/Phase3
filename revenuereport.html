@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<!-- 
+
+REVENUE REPORT
+
+    Project comments:
+        Do Not Hardcode reports in.
+        Only need to show three (limit 3 in sql)
+
+
+QUERIES:
+    sum the ticket sales?
+        Order contains:
+            #tickets (senior, adult, child )
+            get these values and multiply them by ticket price
+
+    get the month?
+        hardcode the month?
+        group by date, select three most recent
+
+QUERIES:
+    $adultRevenue = select sum(adult_tix) from Order;
+    $childRevenue = select sum(child_tix) from Order;
+    $seniorRevenue = select sum(senior_tix) from Order;
+
+    $cDiscount = select Child Discount from System Info;
+    $sDiscount = select Senior Discount from System Info;
+
+MATH:
+    $childRevenue = $childRevenue * $cDiscount;
+    $seniorRevenue = $seniorRevenue * $sDiscount;
+
+
+
+-->
