@@ -398,3 +398,8 @@ Insert INTO user (email, username, password) values ("E@gmail", "E", "121");
 Insert INTO orderinfo(orderID, username, date, time, senior, childTickets, adultTickets, totalTickets, status, TheaterID, cardnumber, title) Values (1, “A”, “12/1/18”, “1:20”, 0, 1, 1, 2, “P”, 123, 1111, “The Grinch”);
 
 Insert INTO tickets(orderID, username, email, time, date, senior, childTickets, adultTickets, totalTickets, status, TheaterID, cardnumber, title) Values (1, “A”, “12/1/18”, “1:20”, 0, 1, 1, 2, “P”, 123, 1111, “The Grinch”);
+Insert INTO paymentinfo(cardNo, cvv, Nameoncard, expirationdate, saved, username) Values (111, 232, "A", "1/2/19", "Y", "A");
+
+Insert INTO systeminfo(Cancellationfee, managerpassword, childDiscount, seniordiscount) Values (10, "Y", 5, 0);
+
+Insert INTO review(ReviewID, rating, title, comment, username) Values (1, "PG", "The Grinch", "Great", "A");
