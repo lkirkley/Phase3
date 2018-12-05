@@ -1,13 +1,22 @@
 Show revenue report
-		
+		//Shows from each sale
+	select (senior*11.54*0.8), (childTickets*11.54*0.7), (adultTickets*11.54)
+	From orderinfo	
+
+		//NEED TO FIX 
+select (senior*11.54*0.8), (childTickets*11.54*0.7), (adultTickets*11.54)
+		From orderinfo
+		WHERE( (date >="12/1/18") OR (DATE<"1/1/19"))
+
 Buy a ticket or multiple
 	insert into orderinfo (orderID, username, date, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("42", "lauren", "10/5/19", "4:00", 0, 0, 1, 1, "NP", "123", 3223, "The Guilty");
 	
 	insert into orderinfo (orderID, username, date, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("42", "lauren", "10/5/19", "4:00", 0, 1, 1, 2, "NP", "123", 3223, "The Guilty");
+
+
 Display pop movie report
-		select title, rating
-		From review	
-		Where (rating = 10);
+		//Need to Fix
+
 Look at movie
 	Have someone write a review
 Insert into review(ReviewID, rating, title, comment, username) Values("1211", "10", "Bohemian Rhapsody", "Great", "jacob")
