@@ -1,0 +1,28 @@
+Show revenue report
+		
+Buy a ticket or multiple
+	insert into orderinfo (orderID, username, date, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("42", "lauren", "10/5/19", "4:00", 0, 0, 1, 1, "NP", "123", 3223, "The Guilty");
+	
+	insert into orderinfo (orderID, username, date, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("42", "lauren", "10/5/19", "4:00", 0, 1, 1, 2, "NP", "123", 3223, "The Guilty");
+Display pop movie report
+		select title, rating
+		From review	
+		Where (rating = 10);
+Look at movie
+	Have someone write a review
+Insert into review(ReviewID, rating, title, comment, username) Values("1211", "10", "Bohemian Rhapsody", "Great", "jacob")
+	Lookat it again
+			SELECT USERNAME, RATING, TITLE, COMMENT
+			FROM REVIEW
+			WHERE TITLE = "Bohemian Rhapsody";
+
+Validate that they’ve seen a movie before reviewing
+	 SELECT USERNAME, date, time, totaltickets
+	FROM orderinfo
+		WHERE (username = "jacob" AND title = "Bohemian Rhapsody");
+
+Show someone bought ticket
+		
+	Delete
+		DELETE FROM  orderinfo WHERE (username = "timmy");
+Does is show in payment history?
