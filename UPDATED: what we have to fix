@@ -31,7 +31,9 @@ Validate that they’ve seen a movie before reviewing
 		WHERE (username = "jacob" AND title = "Bohemian Rhapsody");
 
 Show someone bought ticket
-		
+		select orderID, username, date, time, totalTickets, TheaterID, title
+		FROM orderinfo
+		WHERE (username = "jkl");
 	Delete
 		DELETE FROM  orderinfo WHERE (username = "timmy");
 Does is show in payment history?
