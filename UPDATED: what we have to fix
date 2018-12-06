@@ -3,10 +3,28 @@ Show revenue report
 	select (senior*11.54*0.8), (childTickets*11.54*0.7), (adultTickets*11.54)
 	From orderinfo	
 
-		//NEED TO FIX 
-select (senior*11.54*0.8), (childTickets*11.54*0.7), (adultTickets*11.54)
+		//TOTAL REVENUE OVERALL
+		select total(childTickets*11.54*0.7) AS childTotal, total(adultTickets*11.54) AS adultTotal, total(senior*11.54*0.8) AS seniorTotal, SUM((senior*11.54*0.8)+(adultTickets*11.54)+(childTickets*11.54*0.7)) AS totalRevenue
 		From orderinfo
-		WHERE( (date >="12/1/18") OR (DATE<"1/1/19"))
+//SELECTS FROM EACH MONTH
+		
+		//OCTOBER
+	select sum(childTickets) AS child, sum(senior) AS senior, sum(adultTickets) AS adult, sum((adultTickets)*11.54) as PriceofAdults,
+	sum((childTickets)*11.54*0.7) as PriceofChildTickets, sum((senior)*11.54*0.8) as PriceofSeniorTickets, sum(((senior)*11.54*0.8)+((childTickets)*11.54*0.7)+((adultTickets)*11.54) ) AS totalRevenue
+	FROM orderinfo
+		where(month = 10)
+
+		//November
+		select sum(childTickets) AS child, sum(senior) AS senior, sum(adultTickets) AS adult, sum((adultTickets)*11.54) as PriceofAdults,
+sum((childTickets)*11.54*0.7) as PriceofChildTickets, sum((senior)*11.54*0.8) as PriceofSeniorTickets, sum(((senior)*11.54*0.8)+((childTickets)*11.54*0.7)+((adultTickets)*11.54) ) AS totalRevenue
+FROM orderinfo
+		where(month = 11)
+
+		//DECEMBER
+		select sum(childTickets) AS child, sum(senior) AS senior, sum(adultTickets) AS adult, sum((adultTickets)*11.54) as PriceofAdults,
+sum((childTickets)*11.54*0.7) as PriceofChildTickets, sum((senior)*11.54*0.8) as PriceofSeniorTickets, sum(((senior)*11.54*0.8)+((childTickets)*11.54*0.7)+((adultTickets)*11.54) ) AS totalRevenue
+FROM orderinfo
+		where(month = 12)
 
 Buy a ticket or multiple
 	insert into orderinfo (orderID, username, date, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("42", "lauren", "10/5/19", "4:00", 0, 0, 1, 1, "NP", "123", 3223, "The Guilty");
