@@ -50,7 +50,38 @@ Buy a ticket or multiple
 
 	
 Display pop movie report
-		//Need to Fix
+		//SEPTEMBER
+select title, count(totalTickets) AS numberOforders
+FROM orderinfo
+WHERE month = 12
+GROUP BY title
+ORDER BY count(totalTickets) desc
+LIMIT 3
+
+//OCTOBER	
+select title, count(totalTickets) AS numberOforders
+FROM orderinfo
+WHERE month = 10
+GROUP BY title
+ORDER BY count(totalTickets) desc
+LIMIT 3	
+
+//NOVEMBER
+select title, count(totalTickets) AS numberOforders
+FROM orderinfo
+WHERE month = 11
+GROUP BY title
+ORDER BY count(totalTickets) desc
+LIMIT 3
+
+//DECEMBER
+select title, count(totalTickets) AS numberOforders
+FROM orderinfo
+WHERE month = 12
+GROUP BY title
+ORDER BY count(totalTickets) desc
+LIMIT 3
+
 
 Look at movie
 	Have someone write a review
