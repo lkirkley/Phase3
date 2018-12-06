@@ -27,11 +27,11 @@ FROM orderinfo
 		where(month = 12)
 
 Buy a ticket or multiple
-	insert into orderinfo (orderID, username, date, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("42", "lauren", "10/5/19", "4:00", 0, 0, 1, 1, "NP", "123", 3223, "The Guilty");
+		insert into orderinfo (orderID, username, date, month, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("229393", "elysse", "10/5/19", 10, "4:00", 0, 0, 1, 1, "NP", "123", 3223, "The Guilty");
 	
-	insert into orderinfo (orderID, username, date, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("42", "lauren", "10/5/19", "4:00", 0, 1, 1, 2, "NP", "123", 3223, "The Guilty");
+		insert into orderinfo (orderID, username, date, month, time, senior, childTickets, adultTickets, totaltickets, status, TheaterID, cardnumber, title) Values("19101", "elysse", "10/5/19", 10 ,"4:00", 0, 1, 1, 2, "NP", "123", 3223, "The Guilty");
 
-
+	
 Display pop movie report
 		//Need to Fix
 
