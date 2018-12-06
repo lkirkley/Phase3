@@ -1,4 +1,21 @@
 Show revenue report
+		//OVERALL REPORT
+			select sum(childTickets) AS child, sum(senior) AS senior, sum(adultTickets) AS adult, sum((adultTickets)*11.54) as PriceofAdults,
+sum((childTickets)*11.54*0.7) as PriceofChildTickets, sum((senior)*11.54*0.8) as PriceofSeniorTickets, sum(((senior)*11.54*0.8)+((childTickets)*11.54*0.7)+((adultTickets)*11.54) ) AS totalRevenue
+FROM orderinfo
+		where(month = 10)
+		union
+select sum(childTickets) AS child, sum(senior) AS senior, sum(adultTickets) AS adult, sum((adultTickets)*11.54) as PriceofAdults,
+sum((childTickets)*11.54*0.7) as PriceofChildTickets, sum((senior)*11.54*0.8) as PriceofSeniorTickets, sum(((senior)*11.54*0.8)+((childTickets)*11.54*0.7)+((adultTickets)*11.54) ) AS totalRevenue
+FROM orderinfo
+		where(month = 11)
+		union
+		select sum(childTickets) AS child, sum(senior) AS senior, sum(adultTickets) AS adult, sum((adultTickets)*11.54) as PriceofAdults,
+sum((childTickets)*11.54*0.7) as PriceofChildTickets, sum((senior)*11.54*0.8) as PriceofSeniorTickets, sum(((senior)*11.54*0.8)+((childTickets)*11.54*0.7)+((adultTickets)*11.54) ) AS totalRevenue
+FROM orderinfo
+		where(month = 12)
+
+		
 		//Shows from each sale
 	select (senior*11.54*0.8), (childTickets*11.54*0.7), (adultTickets*11.54)
 	From orderinfo	
